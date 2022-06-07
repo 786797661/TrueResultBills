@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package billsResult.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "ngBills/api/billsResult/v1;v1";
+
+// The greeting service definition.
+service BillsResult {
+  // Sends a greeting
+  rpc  GetTrueResult(GetTrueResultRequest) returns (GetTrueResultReply) {
+    option (google.api.http) = {
+      //get: "/billsResult?type={type}&invoCode={invoCode}&invoNo={invoNo}&inDate={inDate}&checkCode={checkCode}"
+      //get: "/billsResult/{type}/{invoCode}/{invoNo}/{inDate}/{checkCode}"
+      get: "/billsResult"
+    };
+  }
+
+}
+
+// The request message containing the user's name.
+message GetTrueResultRequest {
+  string type = 1;
+  string invoCode=2;
+  string invoNo=3;
+  string inDate=4;
+  string checkCode=5;
+  string Amount=6;
+  string companyNo=7;
+  string taxNo=8;
+}
+// The response message containing the greetings
+message GetTrueResultReply {
+  message mainModel {
+    string fphm = 1;
+    string fpdm = 2;
+    string fpzl = 3;
+    string kprq = 4;
+    string gfmc = 5;
+    string gfsh = 6;
+    string gfdzdh = 7;
+    string gfyhzh = 8;
+    string xfsh = 9;
+    string xfmc = 10;
+    string xfdzdh = 11;
+    string xfyhzh = 12;
+    string je = 13;
+    string se = 14;
+    string hjje = 15;
+    string jqm = 16;
+    string jym = 17;
+    string bz = 18;
+    string zfbz = 19;
+    string hongc=20;
+    repeated nodeDd invoiceList=21;
+  }
+  message nodeDd{
+    string fphm=1;
+    string fpdm=2;
+    string fpzl=3;
+    string spmc=4;
+    string ggxh=5;
+    string jldw=6;
+    string spsl=7;
+    string dj=8;
+    string je=9;
+    string slv=10;
+    string se=11;
+  }
+  mainModel data=1;
+  string subCode=2;
+  string subMessage=3;
+  string success=4;
+  string invoiceType=5;
+  string dataType=6;
+}
